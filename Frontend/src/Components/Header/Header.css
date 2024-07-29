@@ -4,6 +4,7 @@ margin: 30px auto;
 background: url('/ingredients-near-pizza.jpg') no-repeat;
 background-size: cover;
 position: relative;
+border-radius: 25px;
 }
 .header-contents{
 position: absolute;
