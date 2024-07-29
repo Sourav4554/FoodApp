@@ -4,9 +4,11 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './Pages/Home/Home'
 import Cart from './Pages/Cart/Cart'
 import Placeholder from './Pages/Placeholder/Placeholder'
+import Footer from './Components/Footer/Footer'
 
 const App = () => {
   return (
+    <>
     <div className='app'>
       <Navbar/>
       <Routes>
@@ -15,6 +17,8 @@ const App = () => {
         <Route path='/placeorder' element={<Placeholder/>}/>
       </Routes>
     </div>
+    <Footer/>
+    </>
   )
 }
 

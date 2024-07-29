@@ -15,7 +15,6 @@ const {cartItems ,addToCart, removeFromCart}=useContext(storeContext);
              <p>{cartItems[id]}</p>
              <img src={assets.add_icon_green} alt="" onClick={()=>{addToCart(id)}}/>
         </div>
-        
         }
     </div>
     <div className="food-item-info">

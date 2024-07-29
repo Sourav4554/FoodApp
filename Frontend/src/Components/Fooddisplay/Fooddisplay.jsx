@@ -3,7 +3,6 @@ import { storeContext } from '../../Context/Storecontext';
 import Fooditem from '../Fooditem/Fooditem';
 import './Fooddisplay.css'
 const Fooddisplay = ({category}) => {
-  console.log(category);
   const foodlist=useContext(storeContext);
   const foodArray=foodlist.food_list;
   return (
