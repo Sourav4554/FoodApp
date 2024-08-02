@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
-const Navbar = () => {
+const Navbar = ({setLoginPopup}) => {
   const [menu, setMenu] = useState("home");
   return (
     <div className="navbar">
@@ -21,7 +21,7 @@ const Navbar = () => {
 
           <div className="dot"></div>
         </div>
-        <button>Signin</button>
+        <button onClick={()=>{setLoginPopup(true)}}>Signin</button>
       </div>
     </div>
   );

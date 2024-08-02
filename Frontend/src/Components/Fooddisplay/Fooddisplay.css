@@ -12,3 +12,18 @@ margin-top: 30px;
 gap: 30px;
 row-gap: 50px;
 }
+@media(max-width:1050px){
+.food-display-list{
+grid-template-columns: repeat(3,minmax(240px,1fr));
+}
+}
+@media(max-width:900px){
+    .food-display-list{
+    grid-template-columns: repeat(2,minmax(240px,1fr));
+    }
+    }
+    @media(max-width:764px){
+        .food-display-list{
+        grid-template-columns: repeat(1,minmax(240px,1fr));
+        }
+        }

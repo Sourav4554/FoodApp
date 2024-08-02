@@ -13,7 +13,7 @@ margin-top: 40px;
 }
 .app-download-platforms img{
 width: max(30vw,130px);
-max-width: 100px;
+max-width: 200px;
 transition: 0.5s;
 cursor: pointer;
 }
