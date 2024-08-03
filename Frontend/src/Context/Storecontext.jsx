@@ -15,9 +15,19 @@ setCartItems((prev)=>({...prev,[itemid]:prev[itemid]+1}))
 const removeFromCart=(itemid)=>{
 setCartItems((prev)=>({...prev,[itemid]:prev[itemid]-1}))
 }
-useEffect(()=>{
-console.log(cartItems);
-},[cartItems])
+
+const getTotalAmount=()=>{
+let totalAmount=0
+
+for(const item in cartItems){
+  if(cartItems[item]>0){
+let itemInfo=food_list.find((product)=>product._id===item)
+totalAmount +=itemInfo.price*cartItems[item];
+console.log(totalAmount);
+}
+}
+return totalAmount;
+}
 
 
   const contextValue={
@@ -25,6 +35,7 @@ console.log(cartItems);
   cartItems,
   addToCart,
   removeFromCart,
+  getTotalAmount,
   }
   return (
     <storeContext.Provider value={contextValue}>

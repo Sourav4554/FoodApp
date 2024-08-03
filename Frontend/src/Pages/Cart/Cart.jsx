@@ -3,7 +3,7 @@ import './Cart.css'
 import { useContext } from 'react';
 import { storeContext } from '../../Context/Storecontext';
 const Cart = () => {
-  const {cartItems ,food_list, removeFromCart}=useContext(storeContext);
+  const {cartItems ,food_list, removeFromCart,getTotalAmount}=useContext(storeContext);
   return (
   <div className='cart'>
   <div className="cart-items">
@@ -32,6 +32,37 @@ const Cart = () => {
         )
     }
     })}
+  </div>
+  <div className="cart-bottom">
+    <div className="cart-total">
+      <h2>Cart Total</h2>
+      <div>
+        <div className="cart-total-details">
+          <p>Subtotals</p>
+          <p>${getTotalAmount()}</p>
+        </div>
+        <hr />
+        <div className="cart-total-details">
+        <p>Delivery Fee</p>
+          <p>${2}</p>
+        </div>
+        <hr />
+        <div className="cart-total-details">
+          <p>Total</p>
+          <p>${getTotalAmount()+2}</p>
+        </div>
+      </div>
+      <button>PROCEED TO CHECKOUT</button>
+    </div>
+    <div className="cart-promocode">
+      <div>
+        <p>If you have any promocode,Enter it here</p>
+        <div className='cart-promocode-input'>
+          <input type="text" placeholder='promocode'/>
+          <button>Submit</button>
+        </div>
+      </div>
+    </div>
   </div>
     </div>
   )
