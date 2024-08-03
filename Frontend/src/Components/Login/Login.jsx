@@ -5,15 +5,15 @@ const Login = ({setLoginPopup}) => {
 const[currState,setCrrState]=useState('Login');
   return (
     <div className='login-popup'>
-  <form action="" className="login-popup-container">
+  <form action="" className="login-popup-container" autoComplete='off'>
     <div className="login-popup-title">
       <h2>{currState}</h2>
       <img src={assets.cross_icon} alt="" onClick={()=>{setLoginPopup(false)}}/>
     </div>
     <div className="login-popup-inputs">
       {currState==='Login'?<></>: <input type="text" placeholder='yourName' required/> }
-      <input type="email" placeholder='your email' required/> 
-      <input type="password" placeholder='password' required/> 
+      <input type="email" placeholder='your email' autoComplete='off' required/> 
+      <input type="password" placeholder='password' autoComplete='off' required/> 
     </div>
     <button>{currState==='Signup'?'Create account':'Login'}</button>
     <div className="login-popup-conditions">

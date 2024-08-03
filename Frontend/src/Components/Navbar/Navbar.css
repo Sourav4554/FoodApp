@@ -8,6 +8,7 @@
 .navbar h1 {
   width: 150px;
   color: #2c2c51;
+  cursor: pointer;
 }
 .navbar-menu {
   display: flex;
