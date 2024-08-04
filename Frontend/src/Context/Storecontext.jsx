@@ -15,7 +15,7 @@ setCartItems((prev)=>({...prev,[itemid]:prev[itemid]+1}))
 const removeFromCart=(itemid)=>{
 setCartItems((prev)=>({...prev,[itemid]:prev[itemid]-1}))
 }
-
+useEffect(()=>{console.log(cartItems);},[cartItems])
 const getTotalAmount=()=>{
 let totalAmount=0
 

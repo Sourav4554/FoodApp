@@ -1,12 +1,16 @@
 import React from 'react'
 import {menu_list} from '../../assets/assets'
 import './Exploremenu.css'
+import 'animate.css/animate.min.css';
+import ScrollAnimation from 'react-animate-on-scroll';
 const Exploremenu = ({category,setCategory}) => {
 
   return (
     <div className='explore-menu' id='explore-menu'>
      <h1>Explore Our Menu</h1>
      <p className='explore-menu-text'>Choose from a diverse menu featuring a delebrate aray of dishes Our mission is to satisfy your Cravings and elevate your dining experience,one delicious meal at a time</p>
+     <ScrollAnimation animateIn="animate__backInLeft"  >
+
      <div className="explore-menu-list">
      {
      menu_list.map((item,index)=>{
@@ -20,6 +24,8 @@ const Exploremenu = ({category,setCategory}) => {
     })
      }
      </div>
+
+</ScrollAnimation>
      <hr />
     </div>
   )
