@@ -21,14 +21,29 @@ try {
 }
 }
 
+//list food item
 const listfood=async(req,res)=>{
-const food= await foodModel.find({})
+const foodList= await foodModel.find({})
 try {
-    res.json({sucess:true,message:food})
+    res.json({sucess:true,message:foodList})
 } catch (error) {
     console.log(error);
     res.json({sucess:false,message:"error"})
 }
 }
 
-export {addFood,listfood}
+//remove food item
+const removefood=async(req,res)=>{
+try {
+const food=await foodModel.findById(req.body.id);
+fs.unlink(`uploads/${food.image}`,()=>{})
+
+await foodModel.findByIdAndDelete(req.body.id)
+res.json({sucess:true,message:'food removed'})
+} catch (error) {
+    console.log(error);
+    res.json({sucess:false,message:'error'})
+}
+}
+
+export {addFood,listfood,removefood}
