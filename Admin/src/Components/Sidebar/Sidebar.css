@@ -17,13 +17,17 @@ display: flex;
 align-items: center;
 gap: 12px;
 border: 1px solid gray;
-padding-right: 15%;
+padding-right: 13%;
 border-radius: 3px 3px 3px 3px;
 border-right: none;
 }
 .sidebar-option img{
 width: 45px;
+background: transparent;
 height: 45px;
+}
+.sidebar-option.active{
+background-color: #2e2e2e7e;
 }
 @media (max-width:900px){
 .sidebar-option p{

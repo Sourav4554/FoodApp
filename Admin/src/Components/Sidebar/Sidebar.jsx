@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Sidebar.css'
 import {icons} from '../../assets/assets'
 import { NavLink } from 'react-router-dom'
 const Sidebar = () => {
+
   return (
     <div className='sidebar'>
         <div className="sidebar-options">
-            <NavLink className="sidebar-option" to='/add' activeClassName="active-link">
+            <NavLink className="sidebar-option" to='/' >
                 <img src={icons.add_icon} alt="" />
                 <p>AddItems</p>
             </NavLink>
