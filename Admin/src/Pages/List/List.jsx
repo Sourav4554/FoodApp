@@ -5,7 +5,6 @@ import './List.css'
 const List = () => {
 const url='http://localhost:4000'
 const [list,setList]=useState([]);
-console.log(list);
 const fethList= async()=>{
 const response= await axios.get(`${url}/api/food/list`)
 console.log(response.data);
@@ -41,7 +40,7 @@ fethList();
         <b>Action</b>
         </div>
        {list.map((item,index)=>{
-       console.log(item.name);
+       
         return(
           <div className="list-table-format" key={index}>
             <img src={`${url}/images/`+item.image} alt="" />

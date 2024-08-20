@@ -1,0 +1,171 @@
+﻿.closeButton
+{
+	background-image:url(../images/x.png);
+	width:23px;
+	height:23px;
+	float:right;
+}
+.csssaveButton
+{
+/*	-moz-box-shadow:inset 0px 1px 0px 0px #FCf8F2;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #FCf8F2;
+	box-shadow:inset 0px 1px 0px 0px #FCf8F2;
+	background:-web-kit-gradient(linear,left top,left bottom,color-stop(0.05,#FAE4BD),color-stop(1,#EAC380);
+	background:-moz-linear-gradient(center top,#FAE4BD 5%,#EAC380 100%);*/
+	/*filter:progid:*/
+	/*background-color:#FAE4BD;*/
+	/*background-color:#D0D6D9;*/
+	background:#FFFFFF url(../images/button.png) repeat;
+/*	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;*/
+	/*border:1px solid #EEB44F;*/
+	/*border:1px solid #03151F;*/
+/*	display:inline-block;*/
+	/*color:#851326;*/
+	color:#0d0f0f;
+	font-family:Trebuchet MS;
+	font-size:13px;
+	font-weight:bold;
+	padding:1px;
+	text-decoration:none;
+	width:135px;
+	/*width:auto;*/
+	border-top-style:ridge;
+	/*text-shadow:1px 1px 0px #CC9F52;*/
+	height:26px;
+}
+.csssaveButton:hover
+{
+	/*background:-webkit-gradient(linear,left top,left bottom,color-stop(0.05,#EAC380),color-stop(1,#FAE4BD);
+	background:-moz-linear-gradient(center top,#EAC380 5%,#FAE4BD 100%);*/
+	/*background-color:#EAC380;*/
+	/*background-color:#88CEF7;*/
+	background:#FFFFFF url(../images/button.png) repeat;
+	color:#c211aa;
+}
+/*.csssaveButton:active
+{
+	position:relative;
+	top:1px;
+}*/
+.cssCoonfirmButton
+{
+	/*background-color:#D0D6D9;*/
+	background:#FFFFFF url(../images/bgButton.png) repeat;
+	color:#851326;
+	font-family:Trebuchet MS;
+	/*font-weight:bold;*/
+	padding:1px;
+	text-decoration:none;
+	width:80px;
+}
+.cssCoonfirmButton:hover
+{
+	background-color:#88CEF7;
+}
+
+.cssTabButton
+{
+	background:#FFFFFF url(../images/buttontab.PNG) repeat;
+	color:#FFFFFF;
+	font-family:Trebuchet MS;
+	font-size:13px;
+	font-weight:bold;
+	padding:1px;
+	text-decoration:none;
+	width:130px;
+	border-top-style:ridge;
+}
+.cssTabButton:hover
+{
+	background:#FFFFFF url(../images/buttontabover.PNG) repeat;
+	color:#6D0711;
+}
+.cssTabButton:active
+{
+	background:url(../images/buttontab.PNG) top left;
+	background-repeat:no-repeat;
+    color:#FA58F4;
+	text-align:center;
+	padding: 10px 0 0 0;
+}
+.cssLinkButton
+{
+	font-family:Trebuchet MS;
+	font-size:9pt;
+	color:Lime;
+}
+/*
+.blueButton {
+     -moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+     -webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+     box-shadow:inset 0px 1px 0px 0px #54a3f7;
+     background:-webkit-gradient(linear, left top, left bottom,
+color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+     background:-moz-linear-gradient(top, #15549b 5%, #15549b 100%);
+     background:-webkit-linear-gradient(top, #15549b 5%, #15549b 100%);
+     background:-o-linear-gradient(top, #15549b 5%, #15549b 100%);
+     background:-ms-linear-gradient(top, #15549b 5%, #15549b 100%);
+     background:linear-gradient(to bottom, #15549b 5%, #15549b 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#15549b', endColorstr='#15549b',GradientType=0);
+     background-color:#007dc1;
+     -moz-border-radius:3px;
+     -webkit-border-radius:3px;
+     border-radius:3px;
+     border:0px solid #124d77;
+     display:inline-block;
+     cursor:pointer;
+     color:#ffffff;
+     font-family:Trebuchet MS;
+     font-size:11px;
+     height:27px;
+     font-weight:bold;
+     padding:6px 15px;
+     text-decoration:none;
+     text-shadow:0px 1px 0px #154682;
+}
+.blueButton:hover {
+     background:-webkit-gradient(linear, left top, left bottom,
+color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+     background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+     background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+     background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+     background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+     background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+     background-color:#0061a7;
+}
+.blueButton:active {
+     position:relative;
+     top:1px;
+}*/
+/*.cssLinkButton a:link
+{
+	font-family:Trebuchet MS;
+	font-size:5pt;
+	font-weight:bold;
+	color:Lime;
+}
+.cssLinkButton a:active
+{
+	font-family:Trebuchet MS;
+	font-size:10pt;
+	color:Lime;
+}*/
+.blueButton 
+{
+	display: inline-block;
+    background-color: #15549b;
+    border: 1px solid #15549b;
+    color: #fff;
+    padding: 5px 26px;
+    font-size: 14px;
+    margin: 5px 3px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    min-height: 20px!important;
+    padding: 5px 27px!important;
+    border-radius: 5px;
+    font-family: Trebuchet MS;
+}

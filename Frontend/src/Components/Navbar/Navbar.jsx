@@ -20,7 +20,7 @@ const Navbar = ({setLoginPopup}) => {
       <div className="navbar-right">
         <div className="navbar-search-icon">
           <img src={assets.search_icon} alt="" />
-         <Link to='/cart'> <img src={assets.basket_icon} alt="" /></Link>
+         <Link to='/cart' > <img src={assets.basket_icon} alt="" /></Link>
 
           <div className={getTotalAmount()===0?"":"dot"}></div>
         </div>

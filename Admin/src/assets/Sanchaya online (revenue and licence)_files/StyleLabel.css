@@ -1,0 +1,162 @@
+﻿.cssHeadMal
+{
+	/*color:#1E7254;*
+	/*color:#613D2D;*/
+	   color:#689CE2;
+	font-size:11pt;
+	font-weight:bold;
+	font-family:AnjaliOldLipi;
+}
+.cssSubHeadMal
+{
+	/*color:#1E7254;*/
+	color:#613D2D;
+	font-size:10pt;
+	font-weight:bold;
+	font-family:AnjaliOldLipi;
+}
+.cssCaptionMal
+{
+	color:#421C52;
+	font-size:9pt;
+	font-weight:bold;
+	font-family:AnjaliOldLipi;
+}
+.cssCaptionEngpop
+{
+	font-family:Trebuchet MS;
+	color:#421C52;
+	font-size:9pt;
+	font-weight:bold;
+}
+.cssCaptionEng
+{
+	font-family:Trebuchet MS;
+	color:#03151F;
+	font-size:9pt;
+	font-weight:bold;
+}
+.cssValidationMsg
+{
+	font-family:Trebuchet MS;
+	color:#613D2D;
+	font-size:9pt;
+	font-weight:bold;
+}
+legend
+{
+	/*color:#1E7254;*/
+	color:#040212;
+	font-weight:bold;
+	padding-bottom:5px;
+	font-size:9pt;
+	font-family:AnjaliOldLipi;
+}
+fieldset
+{
+	-moz-border-radius:5px;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	border-width:1px;
+	/*border-color:#cc6633;*/
+	border-color:#d4d2cd;
+}
+.cssLabelviewDb
+{
+	font-family:Trebuchet MS;
+	font-size:10pt;
+	font-weight:bold;
+	color:#543203;
+}
+.cssLabelviewDbCaption
+{
+	font-family:Trebuchet MS;
+	font-size:10pt;
+	font-weight:bold;
+	color:#C71585;
+}
+.cssLabelviewDbCaptionmal
+{
+	font-family:AnjaliOldLipi;
+	font-size:10pt;
+	font-weight:bold;
+	color:#C71585;
+}
+.cssDropdownMal
+{
+
+	font-size:8pt;
+	font-family:AnjaliOldLipi;
+	font-weight:normal;
+}
+.cssTextBoxMal
+{
+    font-family:AnjaliOldLipi;
+    font-size:10pt;
+    font-weight:normal;
+    color:#02011A;
+}
+.cssTextBoxEng
+{
+    font-family:Trebuchet MS;
+    font-size:10pt;
+    font-weight:normal;
+    color:#02011A;
+}
+.cssmandatory
+{
+    color:Red;
+    font-size:9pt;
+    font-family:Trebuchet MS;
+    font-weight:bold;
+}
+.cssLabelViewEng
+{
+    font-family:Trebuchet MS;
+	font-size:10pt;
+	font-weight:bold;
+	color:#43745E;
+}
+.cssLabelViewMal
+{
+    font-family:Trebuchet MS;
+	font-size:10pt;
+	font-weight:bold;
+	color:#04535E;
+}
+
+
+.cssCaptiontax
+{
+	/*color:#421C52;*/
+	color:#8C2305;
+	font-size:9pt;
+	font-weight:bold;
+	font-family:AnjaliOldLipi;
+}
+.csstxtTaxTotal
+{
+    font-weight:bold;
+   /* color:#8C2305;*/
+    text-align:right;
+}
+.csstxtTax
+{
+    font-weight:bold;
+   /* color:#8C2305;*/
+    text-align:right;
+}
+.cssLabelTIP
+{
+    font-family:Trebuchet MS;
+	font-size:9pt;
+	font-weight:bold;
+	color:#F78181;
+}
+.cssLabelAmount
+{
+    font-family:Trebuchet MS;
+	font-size:9pt;
+	font-weight:bold;
+	color:Red;
+}

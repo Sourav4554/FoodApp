@@ -1,0 +1,239 @@
+.ModalPopUpBG
+{
+	background:#aaffdd url(../images/ui-bg_diagonals-thick_20_666666_40x40.png);
+	/*background:#aaffdd url(../images/parent.gif);*/
+	filter:alpha(opacity=75);
+	opacity:0.75;
+}
+.popupwindow
+{
+/*height:325px;
+height:auto;
+width:740px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+background:#FFFFFF;
+/*background:url(../images/popupwindowimg.png);*/
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+border:2px #000000;
+}
+.popupheader
+{
+	/*background:blue;*/
+	color:#689CE2;
+	font-weight:bold;
+	text-align:center;
+}
+.popupclose
+{
+	right:6px;
+	top:4px;
+}
+
+.popupconfirm
+{
+ height :130px;
+ width :350px;
+ -moz-border-radius:10px
+ -webkit-border-radius:10px;
+ border-radius:10px;
+ border:1px solid;
+/*background:#FEFEE8;*/
+background:#FFFFFF;
+z-index:2;
+/*padding:12px;*/
+/*font-size:13px;*/
+}
+.popupconfirmhead
+{
+	width :350px;
+	height:30px;
+   
+	background-image:url(../images/gridhead.png);
+	background-repeat:repeat-x;
+	margin:0px 0px 0px 0px;
+}
+.popupConfirmtitle
+{
+	float:left;
+	 width:300px;
+     /* padding-left:2px;
+      margin-top:2px;*/
+      color:#243306;
+      font-family:Trebuchet MS;
+      font-weight:bold;
+      font-size:12pt;
+}
+.popupconclose
+{
+	width:50px;
+	height:auto;
+	/*background-image:url("../images/x.png");
+    background-position  :top right;
+    background-repeat :no-repeat;*/
+	float:right;
+	
+	/*text-align:right;*/
+	/*right:2px;
+	top:1px;*/
+}
+.cssConfirmImage
+{
+	width:60px;
+	height:35px;
+	background-image:url("../images/confirm.png");
+    background-position  :left;
+    background-repeat :no-repeat;
+    float:left;
+    
+}
+.cssConfirmMessage
+{
+	float:right;
+	width:280px;
+	height:35px;
+	padding:20px 0px 0px 5px;
+	text-align:center;
+    font-family:Arial Black;
+    color:#689CE2;
+    font-size:10pt;
+}
+.cssconffooterimg
+{
+	width:180px;
+	height:auto;
+	padding:0px 0px 2px 100px;
+	float:left;
+}
+.cssconffooterblank
+{
+	width:90px;
+	float:left;
+}
+
+
+
+.popupwindowmaster
+{
+/*height:325px;*/
+height:auto;
+width:500px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+/*background:#FFFFFF;*/
+/*background:url(../images/popupwindowimg.png);*/
+background-color:#f0f3f5;
+border:2px solid #000000;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+.popupheadermaster
+{
+	/*background:blue;*/
+	color:#689CE2;
+	font-weight:bold;
+	text-align:center;
+}
+.popupclosemaster
+{
+	right:6px;
+	top:4px;
+}
+
+
+
+.popupwindowdoor
+{
+/*height:325px;*/
+height:auto;
+width:450px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+/*background:#FFFFFF;*/
+background:url(../images/popupwindowimg.png);
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+.popupwindowroad
+{
+/*height:325px;*/
+height:auto;
+width:900px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+/*background:#FFFFFF;*/
+/*background:url(../images/popupwindowimg.png);*/
+background-color:#FFFFFF;
+border:2px solid #000000;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+
+
+.popupwindowds
+{
+/*height:325px;*/
+height:auto;
+width:450px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+background:#FFFFFF;
+/*background:url(../images/popupwindowimg.png);*/
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+.popupBuilddet
+{
+ height :400px;
+ width :800px;
+ overflow:scroll;
+ /*height:auto;*/
+ -moz-border-radius:10px
+ -webkit-border-radius:10px;
+ border-radius:10px;
+ border:1px solid;
+/*background:#FEFEE8;*/
+background:#FFFFFF;
+z-index:2;
+/*padding:12px;*/
+/*font-size:13px;*/
+}
+
+.popupwindowreceipt
+{
+/*height:325px;*/
+height:auto;
+width:800px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+background:#FFFFFF;
+/*background:url(../images/popupwindowimg.png);*/
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}
+.popupwindowreceiptnew
+{
+/*height:325px;*/
+height:450px;
+overflow:scroll;
+width:880px;
+/*background:#FEFEE8;*/
+/*background:#D6DEE4;*/
+background:#FFFFFF;
+/*background:url(../images/popupwindowimg.png);*/
+border:2px solid #cecece;
+z-index:2;
+padding:12px;
+font-size:13px;
+}

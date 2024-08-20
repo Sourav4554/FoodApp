@@ -26,4 +26,3 @@ res.send('API WORKING')
 app.listen(PORT,()=>{
 console.log(`Server is start http://localhost:${PORT}`);
 })
-//mongodb+srv://souravkrishna:sourav425933@cluster0.gwd9puz.mongodb.net/?
