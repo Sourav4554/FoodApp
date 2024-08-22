@@ -10,9 +10,23 @@ return jwt.sign({id},process.env.JWT_SECRET)
 
 //login user
 const loginUser=async(req,res)=>{
-
+const {email,password}=req.body;
+const user=await userModel.findOne({email});
+try {
+    if(!user){
+        return res.json({sucess:false,message:"user didn't exist"})
+        }
+        const check=await bcrypt.compare(password,user.password);
+        if(!check){
+        return res.json({sucess:false,message:"Invalid creedentials"});
+        }
+        const token=createToken(user._id);
+        return res.json({sucess:true,token,message:"login sucessfull"})
+} catch (error) {
+    console.log(error);
+    return res.json({sucess:false,message:"error"})
 }
-
+}
 //registeruser
 const signupUser=async(req,res)=>{
 const {name,email,password}=req.body;
