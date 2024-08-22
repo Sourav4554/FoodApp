@@ -23,8 +23,7 @@ const storage = multer.diskStorage({
     destination: 'uploads',
     filename: (req, file, cb) => {
         // Generate a unique filename
-        const uniqueSuffix = `${Date.now()}${path.extname(file.originalname)}`;
-        cb(null, uniqueSuffix);
+        cb(null, `${Date.now()}${path.extname(file.originalname)}`);
     }
 });
 
@@ -32,7 +31,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        checkFileType(file, cb);
+    checkFileType(file, cb);
     }
 });
 

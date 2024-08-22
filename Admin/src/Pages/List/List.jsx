@@ -7,7 +7,6 @@ const url='http://localhost:4000'
 const [list,setList]=useState([]);
 const fethList= async()=>{
 const response= await axios.get(`${url}/api/food/list`)
-console.log(response.data);
 if(response.data.sucess){
 setList(response.data.message);
 }else{
