@@ -1,9 +1,14 @@
-import { log } from "console";
+
 import foodModel from "../models/foodModel.js";
 import fs from'fs';
 
+
 //add food item
 const addFood=async(req,res)=>{
+const fileType=['image/jpeg','image/png','image/gif','image/jpg'];
+if(!fileType.includes(req.file.mimetype)){
+return res.json({sucess:false,message:"Select a image file"})
+}
 let image_filename=`${req.file.filename}`
 const {name,description,price,category}=req.body;
 const food=new foodModel({
