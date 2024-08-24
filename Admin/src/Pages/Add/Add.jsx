@@ -33,7 +33,7 @@ setData({
   name:"",
   description:"",
   price:"",
-  category:"Salad"
+  category:""
   })
 setImage(false);
 toast.success(response.data.message)
@@ -63,7 +63,7 @@ toast.error(response.data.message)
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>ProductCategory</p>
-            <select name="category"  onChange={onChangeHandler} >
+            <select name="category"  onChange={onChangeHandler} required>
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
               <option value="Deserts">Deserts</option>
