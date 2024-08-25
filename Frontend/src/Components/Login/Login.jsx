@@ -34,6 +34,7 @@ if(respose.data.sucess){
 createToken(respose.data.token);
 localStorage.setItem("token",respose.data.token);
 setLoginPopup(false)
+location.reload();
 }
 else{
 

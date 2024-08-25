@@ -32,7 +32,7 @@ try {
     if(cartData[itemId]){
     cartData[itemId]-=1;
     
-    if(cartData[itemId]){
+    if(cartData[itemId]<=0){
     delete cartData[itemId];
     }
     await userModel.findByIdAndUpdate(userId, { cartData })
@@ -53,7 +53,7 @@ try {
     const userData=await userModel.findById(userId);
     const cartData=userData.cartData;
     if(cartData){
-    res.json({success:true,cartData});
+    res.json({success:true,message:cartData});
     }
     else{
     res.json({success:false,message:"no cartdata available"});
