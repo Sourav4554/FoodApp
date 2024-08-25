@@ -11,7 +11,7 @@ try {
     next();
 } catch (error) {
     console.log(error);
-    res.json({sucess:false,message:error})
+    res.json({sucess:false,message:'error'})
 }
 }
 

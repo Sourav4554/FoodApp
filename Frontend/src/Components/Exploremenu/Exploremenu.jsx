@@ -9,7 +9,7 @@ const Exploremenu = ({category,setCategory}) => {
     <div className='explore-menu' id='explore-menu'>
      <h1>Explore Our Menu</h1>
      <p className='explore-menu-text'>Choose from a diverse menu featuring a delebrate aray of dishes Our mission is to satisfy your Cravings and elevate your dining experience,one delicious meal at a time</p>
-     <ScrollAnimation animateIn="animate__backInLeft"  >
+     <ScrollAnimation animateIn="animate__backInLeft" animateOnce={true} >
 
      <div className="explore-menu-list">
      {

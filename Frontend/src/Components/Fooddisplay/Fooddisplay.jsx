@@ -11,7 +11,7 @@ const Fooddisplay = ({category}) => {
     <div>
       <div className="food-display" id="food-display">
         <h2>Top Dishes Near you</h2>
-          <ScrollAnimation  animateIn="animate__fadeIn" animateOnce={true} delay={500}>
+          <ScrollAnimation  animateIn="animate__fadeIn" animateOnce={true} delay={200}>
         <div className="food-display-list">
              {
       
