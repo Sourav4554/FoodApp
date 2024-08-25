@@ -7,6 +7,7 @@ try {
 const {itemId,userId}=req.body;
 let userData=await userModel.findById(userId)
 let cartData= userData.cartData;
+
 if(!cartData[itemId]){
 cartData[itemId]=1;
 }
@@ -47,7 +48,20 @@ res.json({success:false,message:"no items in cart"})
 }
 //get cartdata
 const getCartdata=async(req,res)=>{
-
+try {
+    const {userId}=req.body;
+    const userData=await userModel.findById(userId);
+    const cartData=userData.cartData;
+    if(cartData){
+    res.json({success:true,cartData});
+    }
+    else{
+    res.json({success:false,message:"no cartdata available"});
+    }
+} catch (error) {
+    console.log(error);
+    res.json({success:false,message:"error"})
+}
 }
 
 export{getCartdata,addCartdata,removeCartdata,}
