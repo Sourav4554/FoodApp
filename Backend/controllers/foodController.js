@@ -5,7 +5,7 @@ import fs from'fs';
 
 //add food item
 const addFood=async(req,res)=>{
-const fileType=['image/jpeg','image/png','image/gif','image/jpg'];
+const fileType=['image/jpeg','image/png','image/gif','image/jpg','image/wepb'];
 if(!fileType.includes(req.file.mimetype)){
 return res.json({sucess:false,message:"Select a image file"})
 }

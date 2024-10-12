@@ -5,6 +5,7 @@ import foodRouter from './routes/foodRoute.js'
 import userRouter from './routes/userRoute.js'
 import cartRouter from './routes/cartRoute.js'
 import 'dotenv/config.js'
+import orderRouter from './routes/orderRouter.js'
 //config
 const app=express()
 const PORT=4000
@@ -29,6 +30,8 @@ app.get('/',(req,res)=>{
 res.send('API WORKING')
 })
 
+//api endpoint for order
+app.use('/api/order',orderRouter);
 //creating server
 app.listen(PORT,()=>{
 console.log(`Server is start http://localhost:${PORT}`);

@@ -10,7 +10,8 @@ const Navbar = ({setLoginPopup}) => {
   const logout=()=>{
   localStorage.removeItem("token");
   createToken("");
-Navigate('/')
+  Navigate('/')
+  location.reload();
   }
   return (
     <div className="navbar">

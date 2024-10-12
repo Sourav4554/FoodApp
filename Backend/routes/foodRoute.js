@@ -7,7 +7,7 @@ const foodRouter = express.Router();
 
 // Check file type
 const checkFileType = (file, cb) => {
-    const filetypes = /jpeg|png|jpg|gif/;
+    const filetypes = /jpeg|png|jpg|gif|wepb/;
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
     const mimetype = filetypes.test(file.mimetype);
 
