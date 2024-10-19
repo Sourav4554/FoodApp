@@ -14,7 +14,7 @@ setCartItems((prev)=>({...prev,[itemId]:1}))
 }else{
 setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
 }
-await axios.post(`${url}/api/cart/add`,{itemId},{headers:{token}})
+await axios.post(`${url}/api/cart/add`,{itemId},{headers:{Authorization:`Bearer ${token}`,}})
 }
 //remove from cart
 const removeFromCart=async(itemId)=>{
@@ -34,7 +34,7 @@ return totalAmount;
 }
 //fetch cart items from database
 const fetchCart=async(token)=>{
-  const response=await axios.post(`${url}/api/cart/get`,{},{headers:{token}})
+  const response=await axios.post(`${url}/api/cart/get`,{},{headers:{Authorization: `Bearer ${token}`,}})
 setCartItems(response.data.message)
 }
 //fetch foodlist from database

@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import './Cart.css'
 import { useContext } from 'react';
 import { storeContext } from '../../Context/Storecontext';
 import { useNavigate } from 'react-router-dom';
 const Cart = () => {
-  const {cartItems ,food_list, removeFromCart,getTotalAmount,url}=useContext(storeContext);
+  const[disabled,setDisabled]=useState(true)
+  const {cartItems ,food_list, removeFromCart,getTotalAmount,url,token}=useContext(storeContext);
   const Navigate=useNavigate();
+  useEffect(() => {
+    if (token) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [token]);
   return (
   <div className='cart'>
   <div className="cart-items">
@@ -54,7 +62,7 @@ const Cart = () => {
           <p>${getTotalAmount()===0?0:getTotalAmount()+2}</p>
         </div>
       </div>
-      <button onClick={()=>{Navigate('/placeorder')}}>PROCEED TO CHECKOUT</button>
+      <button onClick={()=>{Navigate('/placeorder')}} disabled={disabled}>PROCEED TO CHECKOUT</button>
     </div>
     <div className="cart-promocode">
       <div>

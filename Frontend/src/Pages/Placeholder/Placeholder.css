@@ -9,6 +9,13 @@ margin-top: 100px;
 width: 100%;
 max-width: max(30%,500px);
 }
+.loader {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #007bff; /* You can customize the color */
+  }
+  
 .place-order-left .title{
 font-size: max(3vw,20px);
 font-weight: 600;
