@@ -69,7 +69,7 @@ const placeOrder = async (req, res) => {
     return res.json({ success: false, message: error.message || 'Error during checkout' });
   }
 };
-
+//verify the order
 const verify=async(req,res)=>{
 const{orderId,success}=req.body;
 try {
@@ -101,4 +101,13 @@ try {
 }
 }
 
-export { placeOrder,verify,userOrder };
+//user orders for admin
+const adminOrder=async(req,res)=>{
+  try {
+    const orders=await orderModel.find({})
+    return res.json({success:true,data:orders})
+  } catch (error) {
+    return res.json({success:false,message:'error'})
+  }
+}
+export { placeOrder,verify,userOrder ,adminOrder};

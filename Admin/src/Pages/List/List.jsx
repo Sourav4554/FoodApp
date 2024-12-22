@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 import './List.css'
-const List = () => {
-const url='http://localhost:4000'
+const List = ({url}) => {
+
 const [list,setList]=useState([]);
 const fethList= async()=>{
 const response= await axios.get(`${url}/api/food/list`)
+
 if(response.data.sucess){
-setList(response.data.message);
+const sorted=response.data.message.reverse()
+
+setList(sorted);
 }else{
   toast.error('error')
 }

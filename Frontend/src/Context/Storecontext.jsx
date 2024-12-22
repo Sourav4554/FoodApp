@@ -42,7 +42,8 @@ setCartItems(response.data.message)
 //fetch foodlist from database
 const fetchFood=async()=>{
 const response= await axios.get(`${url}/api/food/list`)
-setfoodList(response.data.message)
+const sort=response.data.message.reverse();
+setfoodList(sort)
 }
 
 useEffect(()=>{
