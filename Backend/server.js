@@ -26,6 +26,7 @@ app.use('/api/user',userRouter)
 
 //api endpoint for cart
 app.use('/api/cart',cartRouter)
+
 app.get('/',(req,res)=>{
 res.send('API WORKING')
 })

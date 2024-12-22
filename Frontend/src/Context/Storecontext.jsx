@@ -16,15 +16,17 @@ setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
 }
 await axios.post(`${url}/api/cart/add`,{itemId},{headers:{Authorization:`Bearer ${token}`,}})
 }
+
 //remove from cart
 const removeFromCart=async(itemId)=>{
 setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
-await axios.post(`${url}/api/cart/remove`,{itemId},{headers:{token}})
+await axios.post(`${url}/api/cart/remove`,{itemId},{headers:{Authorization:`Bearer ${token}`,}})
 }
 //Amount calculation 
 const getTotalAmount=()=>{
 let totalAmount=0
 for(const item in cartItems){
+ 
   if(cartItems[item]>0){
 let itemInfo=food_list.find((product)=>product._id===item)
 totalAmount +=itemInfo.price*cartItems[item];

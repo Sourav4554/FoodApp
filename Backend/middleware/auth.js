@@ -11,7 +11,7 @@ const authMiddleware=async(req,res,next)=>{
   }
 const token=req.headers.authorization?.split(" ")[1];
 if(!token){
-res.json({sucess:false,message:'Not Authorised Login again'})
+res.json({sucess:false,message:'Not Authorisedd Login again'})
 }
 try {
     const token_decode=Jwt.verify(token,process.env.JWT_SECRET);
@@ -22,6 +22,5 @@ try {
     res.json({sucess:false,message:'error'})
 }
 }
-
 
 export {authMiddleware}

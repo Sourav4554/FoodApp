@@ -88,7 +88,17 @@ try {
   console.log(error);
   return res.json({success:false,message:"error"});
 }
-
 }
 
-export { placeOrder,verify };
+//user orders for frontend
+const userOrder=async (req,res)=>{
+const{userId}=req.body;
+try {
+ const orders= await orderModel.find({userId:userId});
+ return res.json({success:true,data:orders})
+} catch (error) {
+  return res.json({success:false,message:'cannot find the orders'})
+}
+}
+
+export { placeOrder,verify,userOrder };
