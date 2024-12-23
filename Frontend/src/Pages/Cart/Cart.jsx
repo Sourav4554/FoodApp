@@ -7,13 +7,16 @@ const Cart = () => {
   const[disabled,setDisabled]=useState('')
   const {cartItems ,food_list, removeFromCart,getTotalAmount,url,token}=useContext(storeContext);
   const Navigate=useNavigate();
+ 
   useEffect(() => {
-    if (token) {
+    const totalAmount = getTotalAmount(); 
+    if (token && totalAmount > 0) {
       setDisabled('');
     } else {
       setDisabled('disable');
     }
-  }, [token]);
+  }, [token, cartItems]); 
+  
   return (
   <div className='cart'>
   <div className="cart-items">
@@ -31,7 +34,7 @@ const Cart = () => {
     {food_list.map((item,index)=>{
      if(cartItems[item._id]>0){
       return (
-        <div className="cart-items-title cart-items-item" >
+        <div key={index} className="cart-items-title cart-items-item" >
           <img src={`${url}/images/${item.image}`} alt="" />
           <p>{item.name}</p>
           <p>${item.price}</p>
