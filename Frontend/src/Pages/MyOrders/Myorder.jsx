@@ -10,7 +10,8 @@ console.log(order)
 const fetchOrders=async()=>{
 const response=await axios.post(`${url}/api/order/userOrder`,{},{headers:{Authorization:`Bearer ${token}`}});
 if(response.data.data){
-setMyorder(response.data.data);
+const sortedOrder=response.data.data.reverse();
+setMyorder(sortedOrder);
 
 }
 }
@@ -39,7 +40,7 @@ fetchOrders();
            <p>{order.amount}.00</p>
            <p>items {order.items.length}</p>
            <p><span>&#x25cf;</span><b>{order.status}</b></p>
-           <button>TrackOrder</button>
+           <button onClick={fetchOrders}>TrackOrder</button>
         </div>
         )
 

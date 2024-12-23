@@ -10,7 +10,7 @@ const Order = ({ url }) => {
     try {
       const response = await axios.get(`${url}/api/order/list`);
       if (response.data.success) {
-        const sortOrders=response.data.data.sort((a,b)=>new Date(b.date) - new Date(a.date))
+        const sortOrders=response.data.data.reverse()
         setOrders(sortOrders);
        
       } else {
@@ -20,7 +20,16 @@ const Order = ({ url }) => {
       console.error('Error:', error.message);
     }
   };
-
+ const statusHandler=async(event,orderId)=>{
+  console.log(orderId)
+ const response=await axios.post(`${url}/api/order/status`,{
+  orderId,
+  status:event.target.value
+})
+ if(response.data.success){
+ await fetchOrders();
+ }
+ }
   useEffect(() => {
     fetchOrders();
   }, [url]);
@@ -28,6 +37,7 @@ const Order = ({ url }) => {
   return (
     <div className="order add">
       <h3>Order Page</h3>
+      <h3>Total:{orders.length} Order</h3>
       <div className="order-list">
         {orders.map((order, index) => (
           <div key={index} className="order-item">
@@ -56,11 +66,13 @@ const Order = ({ url }) => {
 
               </div>
               <div>
-              <select name="" id="">
+               <select onChange={(event)=>{statusHandler(event,order._id)} } value={order.value}>
                 <option value="food Processing">Food Processing</option>
                 <option value="out of delivery">Out Of Delivery</option>
                 <option value="Delivered">Delivered</option>
+                
               </select>
+              <p> <p><span>&#x25cf;</span><b>{order.status}</b></p></p> 
             </div>
           </div>
         ))}

@@ -110,4 +110,14 @@ const adminOrder=async(req,res)=>{
     return res.json({success:false,message:'error'})
   }
 }
-export { placeOrder,verify,userOrder ,adminOrder};
+//status change for the order
+const statusChange=async(req,res)=>{
+const {orderId}=req.body;
+try {
+  await orderModel.findByIdAndUpdate(orderId,{status:req.body.status})
+  res.json({success:true,message:"sucess"})
+} catch (error) {
+  res.json({success:false,message:"error"})
+}
+}
+export { placeOrder,verify,userOrder ,adminOrder,statusChange};
