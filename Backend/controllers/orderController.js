@@ -1,65 +1,123 @@
-import userModel from "../models/userModel.js";
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import validator from 'validator';
+import Stripe from 'stripe';
+import orderModel from '../models/orderModel.js';
+import userModel from '../models/userModel.js';
 
-//create token
-const createToken=(id)=>{
-return jwt.sign({id},process.env.JWT_SECRET)
-}
+const stripe = new Stripe('sk_test_51Q2EVsBR6SchygHJc7egredKB4oNoEHDE8PEu393RYGTbbwienP5D33oe6ytOJTNfzwkz5yZfDXvtuZc1GVa4tFi00OhTplljB');
 
-//login user
-const loginUser=async(req,res)=>{
-const {email,password}=req.body;
-const user=await userModel.findOne({email});
+const placeOrder = async (req, res) => {
+  try {
+    const { userId, items, amount, address } = req.body;
+     // Calculate total amount from items
+    const itemTotal = items.reduce((total, item) => total + (item.price * item.quantity * 100), 0); // Total in paise
+    const deliveryCharges = 200; // Delivery charges in paise (2 INR)
+    const totalAmount = itemTotal + deliveryCharges;
+
+    // Ensure the total amount is at least 1000 paise
+    if (totalAmount < 1000) {
+      return res.status(400).json({ success: false, message: 'Total amount must be at least ₹10.00 (1000 paise)' });
+    }
+    // Create a new order
+    const newOrder = new orderModel({
+      userId: userId,
+      items: items,
+      amount: totalAmount,
+      address: address,
+    });
+    await newOrder.save();
+
+    // After adding the order, delete cart data
+    await userModel.findByIdAndUpdate(userId, { cartData: {} });
+
+    // Set up Stripe line items
+    const line_items = items.map((item) => ({
+      price_data: {
+        currency: 'inr', // Ensure all item prices are in INR
+        product_data: {
+          name: item.name,
+        },
+        unit_amount: item.price * 100*80, // Convert price to the smallest unit (paise)
+      },
+      quantity: item.quantity,
+    }));
+
+    // Add delivery charges to line items
+    line_items.push({
+      price_data: {
+        currency: 'inr', // It's better to keep delivery charges in the same currency as the items
+        product_data: {
+          name: 'Delivery Charges',
+        },
+        unit_amount: deliveryCharges, // Delivery charges in paise (2 INR)
+      },
+      quantity: 1,
+    });
+
+    // Create Stripe checkout session
+    const session = await stripe.checkout.sessions.create({
+      line_items: line_items,
+      payment_method_types: ['card'],
+      payment_method_options:{
+      card:{request_three_d_secure:'any'},
+      },
+      mode: 'payment',
+      success_url: `http://localhost:5173/verify?success=true&orderId=${newOrder._id}`,
+      cancel_url: `http://localhost:5173/verify?success=false&orderId=${newOrder._id}`,
+    });
+
+    return res.json({ success: true, session_url: session.url });
+  } catch (error) {
+    return res.json({ success: false, message: error.message || 'Error during checkout' });
+  }
+};
+//verify the order
+const verify=async(req,res)=>{
+const{orderId,success}=req.body;
 try {
-    if(!user){
-        return res.json({success:false,message:"user didn't exist"})
-        }
-        const check=await bcrypt.compare(password,user.password);
-        if(!check){
-        return res.json({success:false,message:"Invalid creedentials"});
-        }
-        const token=createToken(user._id);
-        return res.json({success:true,token,message:"login sucessfull"})
-} catch (error) {
-    console.log(error);
-    return res.json({success:false,message:"error"})
-}
-}
-//registeruser
-const signupUser=async(req,res)=>{
-const {name,email,password}=req.body;
-try {
-    //checking user already exist
-    const userExist=await userModel.findOne({email});
-    if(userExist){
-    return res.json({success:false,message:"User already Exist"});
-    }
-    //validating email format and strong password
-    if(!validator.isEmail(email)){
-    return res.json({success:false,message:'Please Enter a Valid email'});
-    }
-    const passwordRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if(!passwordRequirements.test(password)){
-    return res.json({success:false,message:'Password contain 1 uppercase 1 lowercase 1 digit and alteast 6 characters'})
-    }
-//password hashing
-const salt= await bcrypt.genSalt(10);
-const hashedPassword=await bcrypt.hash(password,salt);
-//adding to database
-const newUser=new userModel({
-name:name,
-email:email,
-password:hashedPassword,
-})
+  if(success=='true'){
+  await orderModel.findByIdAndUpdate(orderId,{payment:true});
+  console.log(' paid');
+  return res.json({success:true,message:"paid"});
+  }
+  else{
+  await orderModel.findByIdAndDelete(orderId)
+  console.log('not paid');
+  return res.json({success:false,message:"Not paid"});
 
-const user=await newUser.save();
-const token=createToken(user._id);
- return res.json({success:true,token})
+  }
 } catch (error) {
-    console.log(error);
-return res.json({success:false,message:"error"})
+  console.log(error);
+  return res.json({success:false,message:"error"});
 }
 }
-export {loginUser,signupUser}
+
+//user orders for frontend
+const userOrder=async (req,res)=>{
+const{userId}=req.body;
+try {
+ const orders= await orderModel.find({userId:userId});
+ return res.json({success:true,data:orders})
+} catch (error) {
+  return res.json({success:false,message:'cannot find the orders'})
+}
+}
+
+//user orders for admin
+const adminOrder=async(req,res)=>{
+  try {
+    const orders=await orderModel.find({})
+    return res.json({success:true,data:orders})
+  } catch (error) {
+    return res.json({success:false,message:'error'})
+  }
+}
+//status change for the order
+const statusChange=async(req,res)=>{
+const {orderId}=req.body;
+try {
+  await orderModel.findByIdAndUpdate(orderId,{status:req.body.status})
+  res.json({success:true,message:"sucess"})
+} catch (error) {
+  res.json({success:false,message:"error"})
+}
+}
+export { placeOrder,verify,userOrder ,adminOrder,statusChange};
