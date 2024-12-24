@@ -45,7 +45,7 @@ toast.success(respose.data.message)
 else{
 toast.error(respose.data.message)
 }}
-  catch(error)
+  catch(error){
     toast.error('error'+error)
 }
   return (
