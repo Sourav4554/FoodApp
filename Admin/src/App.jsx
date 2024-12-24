@@ -9,7 +9,7 @@ import List from './Pages/List/List'
 import Order from './Pages/Orders/Order'
 
 const App = () => {
-const url="https://foodapp-backend-s2w1.onrender.com";
+const url="https://foodapp-production-ecc5.up.railway.app";
   return (
     <div>
       <ToastContainer/>
