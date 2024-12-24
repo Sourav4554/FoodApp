@@ -61,8 +61,8 @@ const placeOrder = async (req, res) => {
       card:{request_three_d_secure:'any'},
       },
       mode: 'payment',
-      success_url: `http://localhost:5173/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `http://localhost:5173/verify?success=false&orderId=${newOrder._id}`,
+      success_url: `https://foodapp-frontend-f50p.onrender.com/verify?success=true&orderId=${newOrder._id}`,
+      cancel_url: `https://foodapp-frontend-f50p.onrender.com/verify?success=false&orderId=${newOrder._id}`,
     });
 
     return res.status(200).json({ success: true, session_url: session.url });
