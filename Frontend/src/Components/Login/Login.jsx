@@ -24,30 +24,42 @@ setData(data=>({...data,[name]:value}))
 }
 
 //Login Signup Logic
-const onsubmitHandler=async(event)=>{
-event.preventDefault();
-let newUrl=url;
-if(currState==='Login'){
-newUrl +='/api/user/login';
-}
-else{
-newUrl +='/api/user/signup';
-}
-  try{
-const respose=await axios.post(newUrl,data);
-if(respose.data.sucess){
-createToken(respose.data.token);
-localStorage.setItem("token",respose.data.token);
-setLoginPopup(false)
-location.reload();
-toast.success(respose.data.message)
-}
-else{
-toast.error(respose.data.message)
-}}
-  catch(error){
-    toast.error('error'+error)
-}
+const onsubmitHandler = async (event) => {
+    event.preventDefault();
+    let newUrl = url;
+
+    if (currState === 'Login') {
+        newUrl += '/api/user/login';
+    } else {
+        newUrl += '/api/user/signup';
+    }
+
+    try {
+        const response = await axios.post(newUrl, data);
+
+        if (response.data.success) {
+            createToken(response.data.token);
+            localStorage.setItem("token", response.data.token);
+            setLoginPopup(false);
+            location.reload();
+            toast.success(response.data.message);
+        } else {
+            toast.error(response.data.message);
+        }
+    } catch (error) {
+        if (error.response) {
+            // Handle backend errors (4xx or 5xx)
+            toast.error(error.response.data.message || "Something went wrong");
+        } else if (error.request) {
+            // Handle no response from the server
+            toast.error("No response from server. Please try again later.");
+        } else {
+            // Handle client-side or network errors
+            toast.error("An unexpected error occurred");
+        }
+    }
+};
+
   return (
     <div className='login-popup'>
   <form action="" className="login-popup-container" autoComplete="new-password" onSubmit={onsubmitHandler}>
