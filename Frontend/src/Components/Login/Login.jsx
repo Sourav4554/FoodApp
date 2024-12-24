@@ -1,68 +1,77 @@
-import userModel from "../models/userModel.js";
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import validator from 'validator';
+import React, { useContext, useState } from 'react'
+import { assets } from '../../assets/assets';
+import './Login.css'
+import axios from 'axios'
+import { toast } from 'react-toastify';
+import { storeContext } from '../../Context/Storecontext';
 
-//create token
-const createToken=(id)=>{
-return jwt.sign({id},process.env.JWT_SECRET)
-}
+const Login = ({setLoginPopup}) => {
+const {url,createToken}=useContext(storeContext);
+const[currState,setCrrState]=useState('Login');
 
-//login user
-const loginUser=async(req,res)=>{
-const {email,password}=req.body;
-const user=await userModel.findOne({email});
-try {
-    if(!user){
-        return res.json({success:false,message:"user didn't exist"})
-        }
-        const check=await bcrypt.compare(password,user.password);
-        if(!check){
-        return res.json({success:false,message:"Invalid creedentials"});
-        }
-        const token=createToken(user._id);
-        return res.json({success:true,token,message:"login sucessfull"})
-} catch (error) {
-    console.log(error);
-    return res.json({success:false,message:"error"})
-}
-}
-//registeruser
-const signupUser=async(req,res)=>{
-const {name,email,password}=req.body;
-try {
-    //checking user already exist
-    const userExist=await userModel.findOne({email});
-    if(userExist){
-    return res.json({success:false,message:"User already Exist"});
-    }
-    //validating email format and strong password
-    if(!validator.isEmail(email)){
-    return res.json({success:false,message:'Please Enter a Valid email'});
-    }
-    const passwordRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
-    if(!passwordRequirements.test(password)){
-    return res.json({success:false,message:'Password contain 1 uppercase 1 lowercase 1 digit and alteast 6 characters'})
-    }
-//password hashing
-const salt= await bcrypt.genSalt(10);
-const hashedPassword=await bcrypt.hash(password,salt);
-//adding to database
-const newUser=new userModel({
-name:name,
-email:email,
-password:hashedPassword,
+const[data,setData]=useState({
+name:"",
+email:"",
+password:""
 })
 
-const user=await newUser.save();
-const token=createToken(user._id);
- return res.json({success:true,token})
+const onChangeHandler=(event)=>{
+const name=event.target.name;
+const value=event.target.value;
+setData(data=>({...data,[name]:value}))
+
+}
+const onsubmitHandler=async(event)=>{
+event.preventDefault();
+let newUrl=url;
+if(currState==='Login'){
+newUrl +='/api/user/login';
+}
+else{
+newUrl +='/api/user/signup';
+}
+try {
+const respose=await axios.post(newUrl,data);
+if(respose.data.success){
+createToken(respose.data.token);
+localStorage.setItem("token",respose.data.token);
+setLoginPopup(false)
+location.reload();
+}
+else{
+toast.error(respose.data.message)
+console.log('user')
+}
 } catch (error) {
-    console.log(error);
-return res.json({success:false,message:"error"})
+  console.log(error)
 }
 }
+  return (
+    <div className='login-popup'>
+  <form action="" className="login-popup-container" autoComplete="new-password" onSubmit={onsubmitHandler}>
+    <div className="login-popup-title">
+      <h2>{currState}</h2>
+      <img src={assets.cross_icon} alt="" onClick={()=>{setLoginPopup(false)}}/>
+    </div>
+    <div className="login-popup-inputs">
+      {currState==='Login'?<></>: <input type="text" name='name' placeholder='yourName' required onChange={onChangeHandler} value={data.name}/> }
+      <input type="email" name='email' placeholder='your email' autoComplete="off" required onChange={onChangeHandler} value={data.email}/> 
+      <input type="password" name='password' placeholder='password' autoComplete="new-password" required onChange={onChangeHandler} value={data.password}/> 
+    
+    </div>
+    <button type='submit'>{currState==='Signup'?'Create account':'Login'}</button>
+    <div className="login-popup-conditions">
+      <input type="checkbox" required/>
+      <p>By Continuing, i agree to the terms of use & Privacy Policy</p>
+    </div>
 
-
-
-export {loginUser,signupUser}
+    {
+    currState==='Login'?
+    <p>Create a new Account?<span onClick={()=>{setCrrState('Signup')}}>Clickhere</span></p>
+    :<p>Already have an Account?<span onClick={()=>{setCrrState("Login")}}>Login here</span></p>
+    }
+  </form>
+    </div>
+  )
+}
+export default Login
