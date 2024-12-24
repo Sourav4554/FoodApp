@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import orderModel from '../models/orderModel.js';
 import userModel from '../models/userModel.js';
 
-const stripe = new Stripe(env.process.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeOrder = async (req, res) => {
   try {
