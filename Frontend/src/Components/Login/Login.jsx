@@ -33,6 +33,7 @@ newUrl +='/api/user/login';
 else{
 newUrl +='/api/user/signup';
 }
+  try{
 const respose=await axios.post(newUrl,data);
 if(respose.data.sucess){
 createToken(respose.data.token);
@@ -40,11 +41,12 @@ localStorage.setItem("token",respose.data.token);
 setLoginPopup(false)
 location.reload();
 toast.success(respose.data.message)
-
 }
 else{
 toast.error(respose.data.message)
-}
+}}
+  catch(error)
+    toast.error('error'+error)
 }
   return (
     <div className='login-popup'>
