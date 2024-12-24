@@ -6,7 +6,7 @@ import { assets } from '../../assets/assets';
 const Myorder = () => {
 const {url,token}=useContext(storeContext);
 const[order,setMyorder]=useState([]);
-console.log(order)
+//fetch orders from database
 const fetchOrders=async()=>{
 const response=await axios.post(`${url}/api/order/userOrder`,{},{headers:{Authorization:`Bearer ${token}`}});
 if(response.data.data){

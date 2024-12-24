@@ -8,6 +8,7 @@ const Cart = () => {
   const {cartItems ,food_list, removeFromCart,getTotalAmount,url,token}=useContext(storeContext);
   const Navigate=useNavigate();
  
+  //used for enable and disable checkout button
   useEffect(() => {
     const totalAmount = getTotalAmount(); 
     if (token && totalAmount > 0) {

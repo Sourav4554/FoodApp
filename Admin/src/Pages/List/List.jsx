@@ -5,17 +5,19 @@ import './List.css'
 const List = ({url}) => {
 
 const [list,setList]=useState([]);
+
+//method for fetch foods from database
 const fethList= async()=>{
 const response= await axios.get(`${url}/api/food/list`)
-
 if(response.data.sucess){
 const sorted=response.data.message.reverse()
-
 setList(sorted);
 }else{
   toast.error('error')
 }
 }
+
+//method for remove food from database
 const removeFood=async(itemid)=>{
 const response=await axios.post(`${url}/api/food/remove`,{id:itemid});
 await fethList();

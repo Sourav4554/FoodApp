@@ -22,6 +22,7 @@ const removeFromCart=async(itemId)=>{
 setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
 await axios.post(`${url}/api/cart/remove`,{itemId},{headers:{Authorization:`Bearer ${token}`,}})
 }
+
 //Amount calculation 
 const getTotalAmount=()=>{
 let totalAmount=0

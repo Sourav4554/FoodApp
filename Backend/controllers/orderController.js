@@ -2,8 +2,9 @@ import Stripe from 'stripe';
 import orderModel from '../models/orderModel.js';
 import userModel from '../models/userModel.js';
 
-const stripe = new Stripe('sk_test_51Q2EVsBR6SchygHJc7egredKB4oNoEHDE8PEu393RYGTbbwienP5D33oe6ytOJTNfzwkz5yZfDXvtuZc1GVa4tFi00OhTplljB');
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
+//method for place order
 const placeOrder = async (req, res) => {
   try {
     const { userId, items, amount, address } = req.body;
@@ -64,29 +65,27 @@ const placeOrder = async (req, res) => {
       cancel_url: `http://localhost:5173/verify?success=false&orderId=${newOrder._id}`,
     });
 
-    return res.json({ success: true, session_url: session.url });
+    return res.status(200).json({ success: true, session_url: session.url });
   } catch (error) {
-    return res.json({ success: false, message: error.message || 'Error during checkout' });
+    return res.status(500).json({ success: false, message: error.message || 'Error during checkout' });
   }
 };
+
 //verify the order
 const verify=async(req,res)=>{
 const{orderId,success}=req.body;
 try {
   if(success=='true'){
   await orderModel.findByIdAndUpdate(orderId,{payment:true});
-  console.log(' paid');
-  return res.json({success:true,message:"paid"});
+  return res.status(200).json({success:true,message:"payment sucessfull"});
   }
   else{
   await orderModel.findByIdAndDelete(orderId)
-  console.log('not paid');
-  return res.json({success:false,message:"Not paid"});
+  return res.status(400).json({success:false,message:"Payment failed"});
 
   }
 } catch (error) {
-  console.log(error);
-  return res.json({success:false,message:"error"});
+  return res.status(500).json({success:false,message:"Internal server error"});
 }
 }
 
@@ -95,9 +94,9 @@ const userOrder=async (req,res)=>{
 const{userId}=req.body;
 try {
  const orders= await orderModel.find({userId:userId});
- return res.json({success:true,data:orders})
+ return res.status(200).json({success:true,data:orders})
 } catch (error) {
-  return res.json({success:false,message:'cannot find the orders'})
+  return res.status(400).json({success:false,message:'cannot find the orders'})
 }
 }
 
@@ -105,9 +104,9 @@ try {
 const adminOrder=async(req,res)=>{
   try {
     const orders=await orderModel.find({})
-    return res.json({success:true,data:orders})
+    return res.status(200).json({success:true,data:orders})
   } catch (error) {
-    return res.json({success:false,message:'error'})
+    return res.status(500).json({success:false,message:'Internal server error'})
   }
 }
 //status change for the order
@@ -115,9 +114,9 @@ const statusChange=async(req,res)=>{
 const {orderId}=req.body;
 try {
   await orderModel.findByIdAndUpdate(orderId,{status:req.body.status})
-  res.json({success:true,message:"sucess"})
+  res.status(200).json({success:true,message:"sucess"})
 } catch (error) {
-  res.json({success:false,message:"error"})
+  res.status(500).json({success:false,message:"Internal server error"})
 }
 }
 export { placeOrder,verify,userOrder ,adminOrder,statusChange};

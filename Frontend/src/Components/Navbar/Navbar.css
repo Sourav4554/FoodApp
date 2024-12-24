@@ -28,7 +28,7 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
-  gap: 40px;
+
 }
 .navbar-search-icon .dot{
 position: absolute;

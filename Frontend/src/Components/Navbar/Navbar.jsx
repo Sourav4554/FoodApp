@@ -7,6 +7,8 @@ const Navbar = ({setLoginPopup}) => {
   const Navigate=useNavigate()
   const [menu, setMenu] = useState("home");
   const {getTotalAmount,token,createToken}=useContext(storeContext)
+
+  //Method used for logout
   const logout=()=>{
   localStorage.removeItem("token");
   createToken("");
@@ -15,7 +17,6 @@ const Navbar = ({setLoginPopup}) => {
   }
   return (
     <div className="navbar">
-      {/* <img src={assets.logo} alt="" className="logo" /> */}
       <Link to='/'><h1>FoodDrop</h1></Link>
       <ul className="navbar-menu">
        <Link to='/'> <li onClick={() => { setMenu("home");}} className={menu === "home" ? "active" : ""}>Home</li></Link>
@@ -26,7 +27,7 @@ const Navbar = ({setLoginPopup}) => {
       {/* navbar-right-section */}
       <div className="navbar-right">
         <div className="navbar-search-icon">
-          <img src={assets.search_icon} alt="" />
+          
          <Link to='/cart' > <img src={assets.basket_icon} alt="" /></Link>
 
           <div className={getTotalAmount()===0?"":"dot"}></div>

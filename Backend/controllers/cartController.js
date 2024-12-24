@@ -15,12 +15,9 @@ else{
 cartData[itemId]+=1;
 }
 await userModel.findByIdAndUpdate(userId, { cartData });
-
-    res.json({ success: true, message: "Added to the cart." });
-
+  return  res.status(200).json({ success: true, message: "Added to the cart." });
 } catch (error) {
-    console.log(error);
-    res.json({sucess:false,message:"error"})
+  return  res.status(500).json({sucess:false,message:"Internal server error"})
 }}
 
 //remove cartdata
@@ -36,14 +33,14 @@ try {
     delete cartData[itemId];
     }
     await userModel.findByIdAndUpdate(userId, { cartData })
-    res.json({success:true,message:"Cart item removed"})
+   return res.status(200).json({success:true,message:"Cart item removed"})
 }
 else{
-res.json({success:false,message:"no items in cart"})
+return res.status(400).json({success:false,message:"no items in cart"})
 }
 } catch (error) {
     console.log(error);
-    res.json({success:false,message:'error'})
+  return  res.status(500).json({success:false,message:'Internal server error'})
 }
 }
 //get cartdata
@@ -53,14 +50,14 @@ try {
     const userData=await userModel.findById(userId);
     const cartData=userData.cartData;
     if(cartData){
-    res.json({success:true,message:cartData});
+   return res.status(200).json({success:true,message:cartData});
     }
     else{
-    res.json({success:false,message:"no cartdata available"});
+   return res.status(400).json({success:false,message:"no cartdata available"});
     }
 } catch (error) {
     console.log(error);
-    res.json({success:false,message:"error"})
+   return res.status(500).json({success:false,message:"Internal Server Error"})
 }
 }
 

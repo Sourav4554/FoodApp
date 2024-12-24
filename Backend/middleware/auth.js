@@ -11,7 +11,7 @@ const authMiddleware=async(req,res,next)=>{
   }
 const token=req.headers.authorization?.split(" ")[1];
 if(!token){
-res.json({sucess:false,message:'Not Authorisedd Login again'})
+res.status(400).json({sucess:false,message:'Not Authorisedd Login again'})
 }
 try {
     const token_decode=Jwt.verify(token,process.env.JWT_SECRET);
@@ -19,7 +19,7 @@ try {
     next();
 } catch (error) {
     console.log(error);
-    res.json({sucess:false,message:'error'})
+    res.status(500).json({sucess:false,message:'error'})
 }
 }
 

@@ -13,14 +13,21 @@ description:"",
 price:"",
 category:"Salad"
 })
-//adding forms
+//method for collect data from the form
 const onChangeHandler= (event)=>{
 const name=event.target.name;
 const value=event.target.value;
 setData((data)=>({...data,[name]:value}))
 }
+
+//Method to submit the form to the database
 const onssubmitHandler=async (event)=>{
 event.preventDefault();
+const validFileTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif', 'image/webp'];
+if (image && !validFileTypes.includes(image.type)) {
+  toast.error('Please select a valid image file.');
+  return;
+}
 const formData= new FormData();
 formData.append("name",data.name)
 formData.append("description",data.description)

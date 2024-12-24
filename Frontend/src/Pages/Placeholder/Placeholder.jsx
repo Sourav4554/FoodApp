@@ -18,6 +18,7 @@ const Placeholder = () => {
     phone: "",
   });
 
+  //store data from the form
   const onchangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -25,6 +26,7 @@ const Placeholder = () => {
   
   };
 
+  //method for place order
   const placeOrder = async (event) => {
     setLoading(true)
     event.preventDefault();
@@ -48,15 +50,13 @@ const Placeholder = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
        if (response.data.success) {
-        console.log('sucess');
          const { session_url } = response.data;
          window.location.replace(session_url);
        } else {
-        console.log('Error from server:', response.data);  // Log server response
         alert("Error placing order: " + response.data.message); 
        }
     } catch (error) {
-      console.log('error');
+      alert('error')
     
     }
     

@@ -7,6 +7,8 @@ const Fooditem = ({id,name,description,image,price}) => {
  
 
 const {cartItems ,addToCart, removeFromCart,url,token}=useContext(storeContext);
+
+//items added on cart only possible after user registration
 const handleAddToCart=(id)=>{
   if (token) {
     addToCart(id);

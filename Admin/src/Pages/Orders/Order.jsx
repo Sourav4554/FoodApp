@@ -6,6 +6,7 @@ import './Order.css'
 const Order = ({ url }) => {
   const [orders, setOrders] = useState([]);
 
+  //method for get orders from the database
   const fetchOrders = async () => {
     try {
       const response = await axios.get(`${url}/api/order/list`);
@@ -20,8 +21,9 @@ const Order = ({ url }) => {
       console.error('Error:', error.message);
     }
   };
+
+  //method for changing the status
  const statusHandler=async(event,orderId)=>{
-  console.log(orderId)
  const response=await axios.post(`${url}/api/order/status`,{
   orderId,
   status:event.target.value

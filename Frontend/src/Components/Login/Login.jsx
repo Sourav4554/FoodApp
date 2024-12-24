@@ -3,6 +3,7 @@ import { assets } from '../../assets/assets';
 import './Login.css'
 import axios from 'axios'
 import { storeContext } from '../../Context/Storecontext';
+import { toast } from 'react-toastify';
 
 const Login = ({setLoginPopup}) => {
 const {url,createToken}=useContext(storeContext);
@@ -14,12 +15,15 @@ email:"",
 password:""
 })
 
+
+//Collect the data from the form
 const onChangeHandler=(event)=>{
 const name=event.target.name;
 const value=event.target.value;
 setData(data=>({...data,[name]:value}))
-
 }
+
+//Login Signup Logic
 const onsubmitHandler=async(event)=>{
 event.preventDefault();
 let newUrl=url;
@@ -35,10 +39,11 @@ createToken(respose.data.token);
 localStorage.setItem("token",respose.data.token);
 setLoginPopup(false)
 location.reload();
+toast.success(respose.data.message)
+
 }
 else{
-
-alert(respose.data.message)
+toast.error(respose.data.message)
 }
 }
   return (
