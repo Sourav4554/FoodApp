@@ -12,7 +12,11 @@ const PORT=process.env.PORT || 4000
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: "https://foodapp-frontend-obvc.onrender.com/", // Replace with your frontend URL
+  methods: ["GET", "POST"],
+  credentials: true,
+}));
 
 //database connection
 connectDB();
