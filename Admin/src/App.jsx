@@ -9,7 +9,7 @@ import List from './Pages/List/List'
 import Order from './Pages/Orders/Order'
 
 const App = () => {
-const url='http://localhost:4000';
+const url="https://foodapp-backend-s2w1.onrender.com";
   return (
     <div>
       <ToastContainer/>
