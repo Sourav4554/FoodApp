@@ -43,6 +43,13 @@ toast.error(respose.data.message)
 console.log('user')
 }
 } catch (error) {
+  if (error.response && error.response.data) {
+      // Display the server error message
+      toast.error(error.response.data.message);
+    } else {
+      // Display a generic error message
+      toast.error('An unexpected error occurred. Please try again.');
+    }
   console.log(error)
 }
 }
