@@ -12,24 +12,10 @@ const PORT=process.env.PORT || 4000
 
 //middlewares
 app.use(express.json())
-const allowedOrigins = [
-  "https://foodapp-frontend-url.com",
-  "https://foodapp-admin-url.com"
-];
+
 
 // CORS Configuration
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Check if the origin is in the allowed origins list
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-  })
-);
+app.use(cors());
 
 //database connection
 connectDB();
